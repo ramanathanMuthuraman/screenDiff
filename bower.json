@@ -5,5 +5,13 @@
     "**/.*",
     "node_modules",
     "components"
-  ]
+  ],
+  "dependencies": {
+    
+    "jquery": "~2.1.1",
+    "jquery-form": "~3.46.0",
+    "bootstrap": "~3.2.0",
+    "twitter-bootstrap-wizard": "~1.0.0"
+    
+  }
 }

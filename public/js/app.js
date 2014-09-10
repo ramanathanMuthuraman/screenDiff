@@ -1,7 +1,16 @@
 $(document).ready(function() {
  
     status('Choose a file :)');
- 
+    
+   $.fn.wizard.logging = true;
+				var wizard = $('#some-wizard').wizard({
+					keyboard : false,
+					contentHeight : 400,
+					contentWidth : 700,
+					backdrop: 'static'
+				});
+    
+    wizard.show();
     // Check to see when a user has selected a file                                                                                                                
     
     $("#archiveFolder").click(function(){

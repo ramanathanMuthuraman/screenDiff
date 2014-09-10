@@ -10,6 +10,6 @@
     "jquery": "~2.1.1",
     "jquery-form": "~3.46.0",
     "bootstrap": "~3.2.0",
-    "psteps": "https://github.com/sciactive/psteps.git"
+    "bootstrap-application-wizard": "*"
   }
 }

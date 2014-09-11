@@ -1,13 +1,17 @@
 $(document).ready(function() {
  
     status('Choose a file :)');
-    
+    var appConfig = {
+        "height":$(window).height()-150,
+        "width":$(window).width()-150
+    }
    $.fn.wizard.logging = true;
 				var wizard = $('#some-wizard').wizard({
 					keyboard : false,
-					contentHeight : 400,
-					contentWidth : 700,
-					backdrop: 'static'
+                    contentHeight : appConfig.height,
+                    contentWidth : appConfig.width,
+				    backdrop: false,
+                    showClose: false
 				});
     
     wizard.show();

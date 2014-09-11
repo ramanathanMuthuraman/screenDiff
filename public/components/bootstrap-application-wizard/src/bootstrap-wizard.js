@@ -702,7 +702,16 @@
             } else {
                 this.cancelButton.hide(); 
             }
-            if (this.args.showClose) { this.closeButton.show(); }
+             //fix for showClose bug
+            if (this.args.showClose) { 
+                this.closeButton.show(); 
+            }
+            else {
+                  //fix for showClose bug
+                this.closeButton.hide();
+            }
+            //remove transition effect by removing the class fade
+            $(this.modal).removeClass("fade");
             this.modal.modal('show');
             
             return this;

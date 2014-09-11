@@ -11,7 +11,8 @@ $(document).ready(function() {
                     contentHeight : appConfig.height,
                     contentWidth : appConfig.width,
 				    backdrop: false,
-                    showClose: false
+                    showClose: false,
+                    container:"#main" // new config to append content inside the DOM specified
 				});
     
     wizard.show();

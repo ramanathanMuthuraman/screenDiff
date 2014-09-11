@@ -427,6 +427,7 @@
             increaseHeight: 0,
             contentHeight: 300,
             contentWidth: 580,
+            container:"", // new config to append content inside the DOM specified
             buttons: {
                 cancelText: "Cancel",
                 nextText: "Next",
@@ -456,7 +457,16 @@
             this.title					= 	this.markup.data('title');
             this.submitCards 			= 	this.markup.find(".wizard-error,.wizard-failure,.wizard-success,.wizard-loading");
             this.el						=	$(this.wizard_template.join('\n'));
-            $('body').append(this.el);
+            // new config to append content inside the DOM specified else append in body
+            if(this.args.container)
+            {
+                $(this.args.container).append(this.el);
+            }
+            else
+            {
+                $('body').append(this.el);
+            }
+            
             
             this.modal 					= 	this.el.modal({
                 keyboard: this.args.keyboard,

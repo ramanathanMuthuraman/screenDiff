@@ -73,17 +73,17 @@
             // The back button is only disabled on this first card...
             w.backButton.toggleClass("disabled", this.index == 0);
 
-            if (this.index >= w._cards.length-1) {
+          //  if (this.index >= w._cards.length-1) {
                 this.log("on last card, changing next button to submit");
 
-                w.changeNextButton(w.args.buttons.submitText, "btn-success");
+              //  w.changeNextButton(w.args.buttons.submitText, "btn-success");
+            //    w._readyToSubmit = true;
+              //  w.trigger("readySubmit");
+            //}
+            //else {
                 w._readyToSubmit = true;
-                w.trigger("readySubmit");
-            }
-            else {
-                w._readyToSubmit = false;
                 w.changeNextButton(w.args.buttons.nextText, "btn-primary");
-            }
+            //}
 
             return this;
         },
@@ -1122,19 +1122,20 @@
             this.log("submitting wizard");
             this._submitting = true;
 
-            this.lockCards();
-            this.cancelButton.hide();
-            this.closeButton.hide();
-            this.backButton.hide();
+         //   this.lockCards();
+           // this.cancelButton.hide();
+        //    this.closeButton.hide();
+          //  this.backButton.hide();
 
-            this.showSubmitCard("loading");
-            this.updateProgressBar(100);
+        //    this.showSubmitCard("loading");
+          //  this.updateProgressBar(100);
 
-            this.changeNextButton(this.args.buttons.submittingText, false);
-            this.disableNextButton();
+        //    this.changeNextButton(this.args.buttons.submittingText, false);
+        //    this.disableNextButton();
 
             var ret = this.trigger("submit");
-            this.trigger("loading");
+            return false;
+           // this.trigger("loading");
         },
 
         _onNextClick: function() {
@@ -1170,19 +1171,27 @@
          * copy how this function works
          */
         _defaultSubmit: function(wizard) {
-            $.ajax({
-                type: "POST",
-                url: wizard.args.submitUrl,
-                data: wizard.serialize(),
-                dataType: "json"
-            }).done(function(response) {
-                wizard.submitSuccess();
-                wizard.hideButtons();
-                wizard.updateProgressBar(0);
-            }).fail(function() {
-                wizard.submitFailure();
-                wizard.hideButtons();
-            });
+            
+            
+              wizard.getActiveCard().el.find(".form-group").ajaxSubmit({
+                  error: function(xhr) {
+                      
+           //    wizard.submitFailure();
+              //  wizard.hideButtons();
+            },
+
+            success: function(response) {
+                  wizard._submitting = false;
+                  wizard._readyToSubmit = false;
+                wizard.incrementCard();
+               // wizard.submitSuccess();
+              //  wizard.hideButtons();
+               // wizard.updateProgressBar(0);
+            }
+           
+        })
+            
+          
         }
     };
     

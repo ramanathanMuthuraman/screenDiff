@@ -3,12 +3,32 @@ extends layout
 block content
     div#some-wizard.wizard(data-title="Screen Difference")
               h1 Wizard Title
-              div.wizard-card(data-cardname='card1')
-                h3 Card 1
-                    Some other content 
-              div.wizard-card(data-cardname='card2')
-                h3 Card 2
-                    Some other content
+              div.wizard-card(data-cardname='upload')
+                h3 Upload 
+                    div.wizard-input-section
+                        form.form-group#uploadForm(enctype='multipart/form-data', action='/extract', method='post')
+                            input#archiveFolder(type='file', name='decompress', data-validate='validateName')
+                    .wizard-error
+                      .alert.alert-error
+                        strong There was a problem
+                        | with your submission.
+                        | Please correct the errors and re-submit.
+                    .wizard-failure
+                      .alert.alert-error
+                        strong There was a problem
+                        | submitting the form.
+                        | Please try again in a minute.
+                    .wizard-success
+                      .alert.alert-success
+                        span.create-server-name
+                        | Server Created
+                        strong Successfully.
+                      a.btn.btn-default.create-another-server Create another server
+                      span(style='padding:0 10px') or
+                      a.btn.btn-success.im-done Done
+              div.wizard-card(data-cardname='URL')
+                h3 URL
+                    div.wizard-input-section
             
             
 

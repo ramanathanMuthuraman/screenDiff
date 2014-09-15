@@ -10,6 +10,6 @@
     "jquery": "~2.1.1",
     "jquery-form": "~3.46.0",
     "bootstrap": "~3.2.0",
-    "bootstrap-application-wizard": "*"
+    "blueimp-file-upload": "~9.7.1"
   }
 }

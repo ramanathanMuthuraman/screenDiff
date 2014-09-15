@@ -2,7 +2,12 @@
 
 $(document).ready(function() {
 
- 
+ $('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+           
+        }
+    });
     // Check to see when a user has selected a file                                                                                                                
 
    /* $("#archiveFolder").click(function() {

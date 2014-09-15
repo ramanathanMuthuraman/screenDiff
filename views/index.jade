@@ -3,3 +3,6 @@ extends layout
 block content
   
 
+    input#fileupload(type='file', name='files[]', data-url='server/php/', multiple='')
+    #progress
+      .bar(style='width: 0%;')

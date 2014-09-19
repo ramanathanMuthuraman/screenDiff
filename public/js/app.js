@@ -8,6 +8,8 @@ $(document).ready(function() {
            
         }
     });
+    
+   
     // Check to see when a user has selected a file                                                                                                                
 
    /* $("#archiveFolder").click(function() {

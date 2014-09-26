@@ -3,8 +3,8 @@ var cookieParser = require('cookie-parser');
 var fs = require('fs');
 var unzip = require('unzip');
 var walk = require('walk');
-var fast_image_size = require('fast-image-size');
 var router = express.Router();
+var sizeOf = require('image-size');
 
 /* GET users listing. */
 
@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
         deleteFolderRecursive(curPath);
       } else { // delete file
         fs.unlinkSync(curPath);
-      }
+      } 
     });
    // fs.rmdirSync(path);
   }
@@ -66,15 +66,16 @@ router.post('/', function(req, res) {
         //traverse the files
         walker.on("file", function(root, fileStats, next) {
             var image = {};
-
-            fast_image_size(root + '/' + fileStats.name, function(ret_obj) {
-                //get the image name, width and height 
+            if(fileStats.name.indexOf(".zip")===-1){
+           
                 image.name = fileStats.name;
-                image.width = ret_obj.width;
-                image.height = ret_obj.height;
+                var dimensions = sizeOf(root + '/' + fileStats.name);
+                image.width = dimensions.width;
+                image.height = dimensions.height;
                 images.push(image);
+            }
                 next();
-            });
+          
 
         });
 

@@ -14,7 +14,8 @@ router.post('/', function(req, res) {
     var fileOptions = req.files.decompress;
     var extension = fileOptions.extension;
     var path = fileOptions.path;
-    zipFolder = fileOptions.name;
+    var aliasFileName = fileOptions.name;
+    var fileName = fileOptions.originalname;
     
     
     var deleteFolderRecursive = function(path) {
@@ -34,8 +35,8 @@ router.post('/', function(req, res) {
 };
     var extractFiles = function(){
 
-
-     fs.renameSync(outputPath + zipFolder, outputPath + sessionKey + "/" + zipFolder, function(err) {
+    //move the zip file into the appropriate folder and rename it from alias name to the original name.
+     fs.renameSync(outputPath + aliasFileName, outputPath + sessionKey + "/" + fileName, function(err) {
         if (err) {
             return err;
         }
@@ -44,7 +45,7 @@ router.post('/', function(req, res) {
     });
     if (extension === 'zip') {
         //unzip the folder
-        fs.createReadStream(outputPath + sessionKey + "/" + zipFolder).pipe(unzip.Extract({
+        fs.createReadStream(outputPath + sessionKey + "/" + fileName).pipe(unzip.Extract({
             path: outputPath + sessionKey
         }).on('close', extractFilestoFolder));
     } else {
